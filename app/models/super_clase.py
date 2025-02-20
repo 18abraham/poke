@@ -16,7 +16,7 @@ class SuperClass:
     
     def create(self,data):
         datum = self.collection.instert_one(data)
-        return datum.insert_id
+        return str(datum.insert_id)
     
     def update(self, object_id, data):
         datum = self.collection.insert.update_one({

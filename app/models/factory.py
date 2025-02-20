@@ -1,4 +1,4 @@
-from app.models.pokemon import Pokemon
+from pokedex.app.models.pokemon import Pokemon
 from app.models.pokemon_favorites import PokemonFavorites
 from app. models.users import User
 
