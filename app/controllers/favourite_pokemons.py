@@ -10,14 +10,16 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 bp = Blueprint("favourite_pokemons", __name__, url_prefix="/favourite-pokemons")
 RM = ResponseManager()
 FP_MODEL = ModelFavorite.get_model("pokemon_favorite")
-FP_SCHEMA = PokemonFavoritiesSchema
+FP_SCHEMA = PokemonFavoritiesSchema()
 
 @bp.route("/", methods=["POST"])
 @jwt_required()
 def create():
+    user_id = get_jwt_identity()
     try:
         data = request.json
-        data = FP_SCHEMA.validate(data)
+        data = FP_SCHEMA.load(data)
+        data["user_id"] = user_id
         fp = FP_MODEL.create(data)
         return RM.succes({"_id": fp})
     except ValidationError as err:
