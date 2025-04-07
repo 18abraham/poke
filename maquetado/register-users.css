@@ -1,8 +1,16 @@
-body {
-    background-color: brown;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('https://wallpaperaccess.com/full/4539965.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    margin: 0;
+    padding: 0;
 }
 
 .container-registro {
@@ -31,7 +39,7 @@ body {
 
 .container-registro button {
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: gray;
     color: white;
     border: none;
     border-radius: 4px;
@@ -40,5 +48,18 @@ body {
 }
 
 .container-registro button:hover {
-    background-color: #45a049;
+    background-color: gray;
+}
+
+
+.imagen-perrona{
+
+    position: absolute;
+    top: 10px;
+    left: 10px; 
+}
+.imagen-perrona>img{
+    width: 100px; 
+    height: auto;
+    border-radius: 50%;
 }
