@@ -16,7 +16,15 @@ class PokemonFavorites(SuperClase):
           data["user_id"] = ObjectId(data["user_id"])
           data["pokemon_id"] = ObjectId(data["pokemon_id"])
           datum = self.collection.insert_one(data)
-          return str(datum.inserted_id)   
-
+          return str(datum.inserted_id) 
+      
+        
+    def find_all(self,user_id):
+          data = list(self.collection.find({"user_id":ObjectId(user_id)}))
+          for datum in data:
+                datum["user_id"]=str(datum["user_id"])
+                datum["pokemon_id"]=str(datum["pokemon_id"])
+                datum["id"] =str(datum["_id"])
+                return data
         
     
