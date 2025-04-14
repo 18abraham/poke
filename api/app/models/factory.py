@@ -1,15 +1,15 @@
 from app.models.pokemon import Pokemon
-from app.models.pokemon_favorities import PokemonFavorites
-from app.models.user import User
+from app.models.pokemon_favorite import PokemonFavorites
+from app.models.users import User
 
-class ModelFavorite():
+class ModelFactory:
     @staticmethod
-    def get_model(colection_name):
+    def get_model(collection_name):
         models = {
             "users": User,
-            "pokemons": Pokemon,
-            "pokemon_favorite": PokemonFavorites
+            "pokemons":Pokemon,
+            "pokemon_favorites": PokemonFavorites
         }
-        if colection_name in models:
-            return models[colection_name]() 
-        raise ValueError(f"La colección enviada: {colection_name} no existe")
+        if collection_name in models:
+            return models[collection_name]()
+        raise ValueError(f"La coleccion enviada: {collection_name} no existe")

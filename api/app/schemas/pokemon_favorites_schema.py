@@ -1,14 +1,10 @@
 from marshmallow import Schema, fields, ValidationError
 
-class PokemonFavoritiesSchema(Schema):
-
+class PokemonFavoriteSchema(Schema):
     pokemon_id = fields.Str(
-        required = True,
+        required=True,
         validate=lambda x: len(x) > 0,
         error_messages={
-            "required": "El Id del Pókemon es requerido"
-        } 
-        
+            "required": "El id del pokemon es requerido"
+        }
     )
-
-    

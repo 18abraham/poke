@@ -1,76 +1,68 @@
-import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Button, TextInput } from 'react-native-web';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Login } from './Login';
+import { navigationRef } from './navigation';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useState } from 'react';
+import { Home } from './Home';
+import { Register } from './Register';
+import { Profile } from './Profile';
+import Ionicons from "@expo/vector-icons/Ionicons"
+import Unique from './Unique';
+import { ListFavorites } from './ListFavorites';
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function App() {
+function Tabs() {
   return (
-    <View style={styles.container}>
-      <view>{/Container-image/}
-        <Image source={{uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/2052px-Pok%C3%A9_Ball_icon.svg.png"}}
-        width={200}
-        height={200}
-        />
-      </view>
-      <view>
-        <Text style={styles.tittle}>Iniciar Sesion</Text>{/tittle/}
-        <Text style={styles.label}>Correo</Text>{/Label/}
-        <TextInput style={styles.input}></TextInput>
-        <Text style={styles.label}>Contraseña</Text>{/Label/}
-        <TextInput style={styles.input}></TextInput>
-        <Pressable style={styles.send}>
-        <Text style={styles.send.textButton}>Enviar</Text>
-        </Pressable>
-      </view>
-      <view>{/Container-footer/}
-        <Text>Olvidaste tu contraseña</Text>{/tittle/}
-        <Text>Registrate</Text>{/Label/}
-      </view>
-    </View>
+    <Tab.Navigator initialRouteName='Home' screenOptions={({ route }) => ({
+      headerShown: false,
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'Home') {
+          iconName = focused
+            ? 'home'
+            : 'home-outline';
+        } else if (route.name === 'Favorites') {
+          iconName = focused ? 'heart-sharp' : 'heart-outline';
+        }else if (route.name === 'Profile') {
+          iconName = focused ? 'person-sharp' : 'person-outline'; 
+        }
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: 'red',
+      tabBarInactiveTintColor: 'gray',
+    })}>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Favorites" component={ListFavorites} />
+      <Tab.Screen name="Profile" component={Profile} />  
+    </Tab.Navigator>
+  );
+}
+export default function App() {
+  const [isLogged, setIsLogged] = useState(false);
+  return (
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        {
+          isLogged ? (
+            <>
+              <Stack.Screen name="Tabs" component={Tabs} />
+              <Stack.Screen name="UniquePokemon" component={Unique} />
+            </>
+          ) : (
+            <>
+            <Stack.Screen name="Login">
+              {(props) => <Login {...props} onLogin={() => setIsLogged(true)} />}
+            </Stack.Screen>
+            <Stack.Screen name="Register" component={Register} />
+            </>
+          )
+        }
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor: '#fff',
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tittle:{
-    fontSize:24,
-    fontWeight:"bold"
-  },
-  label:{
-    fontSize:15,
-    fontWeight:"bold"
-  },
-  input:{
-    borderRadius:10,
-    borderColor:"black",
-    borderWidth:2,
-    fontSize:15,
-    width:"auto",
-  },
-  send:{
-    backgroundColor:"red",
-    width:"auto",
-    height:"auto",
-    borderRadius:10,
-    marginTop:"15",
-    alignItems:"center",
-    textButton:{
-      color:"black",
-      fontSize:20,
-      fontWeight:"bold",
-    }
-  },
-  containerFooter:{
-    justifyContent:"space-between",
-    alignItems:"center",
-    text:{
-    fontSize:20,
-    margin:5
-   }
-  }
-});
+

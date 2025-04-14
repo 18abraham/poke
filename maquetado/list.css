@@ -1,16 +1,13 @@
 body{
-    background-color: rgb(104, 122, 73);
-    padding: 0%;
-    margin: 0%;
+    background-color: rgb(255, 255, 255);
+    padding: 0;
+    margin: 0;
 }
-
-
-
 .container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 10px;
-    display: block;
 }
 
 .card{
@@ -22,31 +19,30 @@ body{
 
 .info-pokemon{
     border-radius: 15px 0px 0px 15px;
-    background-color: rgb(220, 214, 225);
+    background-color: rgb(238, 231, 231);
     width: 30%;
-
 }
 
 .name-pokemon{
     font-size: 25px;
-    color: rgb(5, 5, 5);
+    color: black;
     margin: 5px;
 }
 
 .id-pokemon{
     font-size: 20px;
-    color: rgb(17, 17, 17);
+    color: black;
     margin: 5px;
 }
 
 .tags{
-    text-align: center;
+    margin: 5px;
 }
 
 .type-pokemon{
-    background-color: white;
     margin: 2px;
     padding: 2px;
+    color: white;
     border-radius: 15px;
     text-align: center;
     width: fit-content;
@@ -55,19 +51,17 @@ body{
 .image-pokemon{
     display: flex;
     width: 70%;
-    border-radius: 15px 0px 0px 15px;
+    border-radius: 0px 15px 15px 0px;
     background-color: red;
     justify-content: center;
-    
 }
 
 .image-pokemon > img{
     width: 150px;
     height: 150px;
-    background-color: wheat;
 }
 
-@media (max-width : 400px){
+@media (max-width: 400px){
     .name-pokemon{
         font-size: 15px;
     }
