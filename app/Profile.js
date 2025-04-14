@@ -1,4 +1,3 @@
-// Profile.js
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, SafeAreaView, Alert, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -58,7 +57,7 @@ export const Profile = () => {
             <LoadingModal visible={loading} />
             <View style={styles.container}>
                 <View>
-                    <Image source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSay9ThX0lxGJubGqUIUGxY1ppqRudUw508LA&s" }}
+                    <Image source={{ uri: "https://vignette.wikia.nocookie.net/nintendo/images/3/32/Psyduck.png/revision/latest?cb=20160509232356&path-prefix=en" }}
                         width={200}
                         height={200}
                     />
